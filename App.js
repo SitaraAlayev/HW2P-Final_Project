@@ -1,18 +1,12 @@
 import React from 'react';
-import {Home_page} from './screens/Home_page'
+import 'react-native-gesture-handler';
 import { View, StyleSheet } from 'react-native';
-import {Upload_image_scan} from './screens/Upload_image_scan'
+import Navigation from './Navigation/Home_page_Navigator';
 
 export default function App()
  {
-  return (
-  
-    <View style={styles.container}>
-        {/* <Home_page/> */}
-        <Upload_image_scan/>
-    </View>
-
-  );
+  return <Navigation/>;
+    
 }
 
 const styles = StyleSheet.create({
