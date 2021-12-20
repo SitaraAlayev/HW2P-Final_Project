@@ -8,9 +8,12 @@ export default StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    width: windowWidth,
+    height:windowHeight,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor:'white',
+
 
   },
   image: {
@@ -21,29 +24,33 @@ export default StyleSheet.create({
 
   },
   containerButtons:{
-      flex: 1,
+
       borderRadius: 12,
       borderColor: '#AD67EA',
-      // justifyContent: 'space-evenly',
-      width: '80%',
-      height: '60%',
+      justifyContent: 'space-evenly',
+      width:windowWidth/2,
+      height:windowHeight/10,
+      
+
 
   
   },
   //הגדרות של הכפתור והמסגרת ביחס למסך
   containerButton:{
-    borderRadius: 50,
+    borderRadius:30,
     borderWidth: 5,
     borderColor: '#AD67EA',
     width:windowWidth/2,
     height:windowHeight/10,
-    // justifyContent:'space-evenly',
+    justifyContent:'space-evenly',
     textAlign:'center',
+  
 
 },
 smallbuttonupload:
 {
   width:windowWidth/2.5,
+  
 },
 
 //Body text 
@@ -51,32 +58,35 @@ textstyle: {
 
 
     color: '#AD67EA',
-    fontSize: 18,
+    fontSize: 20,
     textAlign:'center',
 },
 SelectContainer:
 {
-  width:400,
+  width:700,
   height:600,
-  maxWidth:'80%',
+  maxWidth:'90%',
   shadowColor:'black',
-  shadowOffset:{width:2,height:2},
+  // shadowOffset:{width:2,height:2},
   shadowRadius:10,
   shadowOpacity:0.26,
   elevation:8,
   backgroundColor:'white',
-  borderRadius:70,
+  borderRadius:50,
   alignItems:'center',
   justifyContent:'center',
   marginTop:10,
+ 
 
 },
 SelectContainer_buttons:
 {
   flexDirection:'column',
-  width:'100%',
+  width:300,
   borderColor:'#AD67EA',
   justifyContent:'center',
+
+ 
 
 },
 inputText:{
