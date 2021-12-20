@@ -1,33 +1,27 @@
-import React,{useState} from 'react';
-import { View, Image } from 'react-native'
+import React from 'react';
+import { View, Image } from 'react-native';
 import {Main_button} from '../components/Main_button'
-import Styles from '../Styles';
+import Styles from '../Styles'
 
 
-export const Home_page = () =>
+const Home_page = (props) =>
  {
-  
   return (
-    <View style={Styles.container}>
-        <Image 
-        source={require('../assets/logo_final.png')} 
-        style={Styles.image} 
-        resizeMode="contain"/>
-        <Main_button >
-            צפייה בתיקיות 
-            </Main_button>
+      <View style={Styles.container}>
+          <Image 
+          source={require('../assets/logo_final.png')} 
+          style={Styles.image} 
+          resizeMode="contain"/>
+          <Main_button onPress= {() =>{props.navigation.navigate('View_folders')}}  >
+              צפייה בתיקיות 
+              </Main_button>
 
-            <Main_button onPress= {() =>{}} >
-                העלאת קובץ לסריקה
-            </Main_button>
-
-
-      
-    
-
-    </View>
+              <Main_button onPress= {() =>{props.navigation.navigate('Upload_image_scan')}} >
+                  העלאת קובץ לסריקה
+              </Main_button>
+      </View>
 
   );
 }
 
-export default Home_page
+export default Home_page;
