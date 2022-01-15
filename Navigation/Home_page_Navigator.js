@@ -7,7 +7,6 @@ import Image_picker_camera from '../components/Image_picker_camera';
 import Image_picker_gallery from '../components/Image_picker_gallery';
 
 
-
 const Home_page_Navigator = createStackNavigator({
     Home_page: Home_page, 
     Upload_image_scan:Upload_image_scan,

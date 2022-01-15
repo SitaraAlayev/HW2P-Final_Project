@@ -1,68 +1,76 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Camera } from 'expo-camera';
+import React, { useState } from 'react';
+import { View, Button, Image, Text, StyleSheet, Alert } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
+import {Main_button} from '../components/Main_button';
 
 
-const Image_picker_camera = props => {
-  
-    const [hasPermission, setHasPermission] = useState(null);
-    const [type, setType] = useState(Camera.Constants.Type.back);
-  
-    useEffect(() => {
-      (async () => {
-        const { status } = await Camera.requestCameraPermissionsAsync();
-        setHasPermission(status === 'granted');
-      })();
-    }, []);
-  
-    if (hasPermission === null) {
-      return <View />;
+const Image_picker_camera= props => {
+  const [pickedImage , setPickedImage] =useState();
+
+  const verifyPermissions = async () => {
+    const result = await Permissions.askAsync(Permissions.CAMERA);
+    if (result.status !== 'granted') {
+      Alert.alert(
+        'Insufficient permissions!',
+        'You need to grant camera permissions to use this app.',
+        [{ text: 'Okay' }]
+      );
+      return false;
     }
-    if (hasPermission === false) {
-      return <Text>No access to camera</Text>;
+    return true;
+  };
+
+  const takeImageHandler = async () => {
+    const hasPermission = await verifyPermissions();
+    if (!hasPermission) {
+        return;
     }
-    return (
-      <View style={styles.container}>
-        <Camera style={styles.camera} type={type}>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                setType(
-                  type === Camera.Constants.Type.back
-                    ? Camera.Constants.Type.front
-                    : Camera.Constants.Type.back
-                );
-              }}>
-              <Text style={styles.text}> Flip </Text>
-            </TouchableOpacity>
-          </View>
-        </Camera>
+    const image = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      aspect: [16, 9],
+      quality: 0.5,
+
+    });
+
+    setPickedImage(image.uri);
+    props.onImageTaken(image.uri);
+  };
+
+  return (
+    <View style={styles.imagePicker}>
+      <View style={styles.imagePreview}>
+        {!pickedImage? (
+        <Text>No image picked yet.</Text>
+        ):(
+        <Image style={styles.image} source={{uri:pickedImage}}/>
+        )}
       </View>
-    );
+      <Main_button onPress={takeImageHandler}>
+        צלם תמונה
+        </Main_button>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  imagePicker: {
+    alignItems: 'center',
+    marginBottom: 15
+  },
+  imagePreview: {
+    width: '100%',
+    height: 200,
+    marginBottom: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#ccc',
+    borderWidth: 1
+  },
+  image: {
+    width: '100%',
+    height: '100%'
   }
-  
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    camera: {
-      flex: 1,
-    },
-    buttonContainer: {
-      flex: 1,
-      backgroundColor: 'transparent',
-      flexDirection: 'row',
-      margin: 20,
-    },
-    button: {
-      flex: 0.1,
-      alignSelf: 'flex-end',
-      alignItems: 'center',
-    },
-    text: {
-      fontSize: 18,
-      color: 'white',
-    },
-  });
+});
+
 export default Image_picker_camera;
