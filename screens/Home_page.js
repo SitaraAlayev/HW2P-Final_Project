@@ -22,6 +22,11 @@ const Home_page = (props) =>
       </View>
 
   );
-}
+};
+Home_page.navigationOptions={
+  headerTitle:'HW2P SCANNER',
+  headerStyle:{backgroundColor:'#AD67EA'},
+  headerTintColor:'white'
+};
 
 export default Home_page;
