@@ -14,5 +14,5 @@ export const Main_button = (props) =>
   );
 }
 
-export default Main_button
+export default Main_button;
 

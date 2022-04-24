@@ -35,4 +35,13 @@ allprojects {
         google()
         maven { url 'https://www.jitpack.io' }
     }
+
+    android { 
+        ... 
+        defaultConfig { 
+        ... 
+        missingDimensionStrategy 'react-native-camera', 'general' /* insert this line */
+        }
+
+    }
 }
