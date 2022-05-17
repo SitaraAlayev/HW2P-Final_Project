@@ -46,11 +46,6 @@ export default StyleSheet.create({
     
  
 },
-// smallbuttonupload:
-// {
-//   width:windowWidth/2.5,
-  
-// },
 card:{
   width:300,
   maxWidth:'80%',
@@ -113,6 +108,12 @@ image1: {
   backgroundColor: '#ccc',
   borderColor:'#AD67EA' ,
   borderWidth: 1
+},
+centeredView: {
+  flex: 1,
+  justifyContent: "center",
+  alignItems: "center",
+  marginTop: 22
 },
 infoContainer: {
   marginLeft: 25,

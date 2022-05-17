@@ -1,6 +1,7 @@
 package com.rnimagepicker;
 
 import com.facebook.react.ReactActivity;
+import com.ubidreams.RNDocumentScanner.RNDocumentScannerPackage;
 
 public class MainActivity extends ReactActivity {
 
@@ -12,4 +13,10 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "RNimagePicker";
   }
+
+  RNDocumentScannerPackage(){
+    return getPackages();
+  }
+
+
 }
