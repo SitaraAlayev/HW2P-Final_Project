@@ -3,9 +3,8 @@ import { View, Text,Platform,ScrollView, FlatList } from 'react-native';
 import Styles from '../Styles'
 import { HeaderButtons,Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/CustomHeaderButton';
-import {Add_Folder} from '../components/Add_Folder';
 
-const View_folders = (props)=>{
+export const View_folders = (props)=>{
     return(
         <ScrollView>
             <View style={Styles.container}>

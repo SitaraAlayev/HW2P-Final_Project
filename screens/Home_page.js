@@ -4,9 +4,8 @@ import {Main_button} from '../components/Main_button'
 import Styles from '../Styles'
 
 
-const Home_page = (props) =>
- {
-   
+function Home_page (props)
+{
   return (
     <View style={Styles.container}>
         <Image 

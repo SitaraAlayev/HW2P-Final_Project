@@ -18,5 +18,3 @@ function FolderItem({folder,onSelect}){
 };
 
 export default FolderItem;
-
-const styles= StyleSheet

@@ -11,13 +11,14 @@ const Upload_image_scan =(props) =>{
 
      const [pickedImage , setPickedImage] =useState();
 
+     const [save,setSave]=useState(false);
+
      const [image, setImage] = useState(null);
 
      const pickImage = async () => {
-       // No permissions request is necessary for launching the image library
        let result = await ImagePicker.launchImageLibraryAsync(
          {
-         mediaTypes: ImagePicker.MediaTypeOptions.All,
+         mediaTypes: ImagePicker.MediaTypeOptions.Images,
          allowsEditing: true,
          aspect: [4, 3],
          quality: 1,
@@ -26,7 +27,11 @@ const Upload_image_scan =(props) =>{
        if (!result.cancelled) {
          setImage(result.uri);
        }
+
      };
+
+      
+
 
      const verifyPermissions = async () => {
        const result = await Permissions.askAsync(Permissions.CAMERA);
@@ -46,36 +51,38 @@ const Upload_image_scan =(props) =>{
        if (!hasPermission) {
            return;
        }
-       const image = await ImagePicker.launchCameraAsync({
-         allowsEditing: true,
-         aspect: [16, 9],
-         quality: 0.5,
+        image = await ImagePicker.launchCameraAsync({
+        allowsEditing: true,
+        aspect: [16, 9],
+        quality: 0.5,
+        allowsMultipleSelection:true,
+        onPictureSaved: this.saveImage.bind(this),
+        
    
        });
+       console.log(image.uri);
    
-      setPickedImage(image.uri);
-      props.onImageTaken(image.uri);
+       setPickedImage(image.uri);
      };
+
+
+
+
      
      return(
-        <View style={Styles.container}>
-          {/* <View style={styles.imagePicker}>
-               <View style={styles.imagePreview}>
-                  {!pickedImage? (
-                  <Text>No image picked yet.</Text>
-                  ):(
-                  <Image style={styles.image} source={{uri:pickedImage}}/>)}
-                </View>
-              </View> */}
-          <View style={Styles.SelectIcon_buttons}>
-               <Main_button onPress={takeImageHandler}>
-                    <FontAwesome name="camera" size={30} color="#AD67EA" />
-               </Main_button>
-               <Main_button onPress= {pickImage} >
-                    <Entypo name="images" size={30} color="#AD67EA"/>
-               </Main_button>
-            </View>
-         </View>
+          <View style={Styles.container}>
+            <ScrollView>
+            
+            <View style={Styles.SelectIcon_buttons}>
+                <Main_button onPress={takeImageHandler}>
+                      <FontAwesome name="camera" size={30} color="#AD67EA" />
+                </Main_button>
+                <Main_button onPress= {pickImage} >
+                      <Entypo name="images" size={30} color="#AD67EA"/>
+                </Main_button>
+              </View>
+            </ScrollView>
+        </View>
      );
 };
 
@@ -87,15 +94,6 @@ Upload_image_scan.navigationOptions={
      imagePicker: {
        alignItems: 'center',
        marginBottom: 15,
-     },
-     imagePreview: {
-       width: '100%',
-       height: 200,
-       marginBottom: 10,
-       justifyContent: 'center',
-       alignItems: 'center',
-       borderColor: '#ccc',
-       borderWidth: 1,
      },
      image: {
        width: '100%',

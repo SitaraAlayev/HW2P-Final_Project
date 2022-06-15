@@ -1,10 +1,12 @@
 {
   "expo": {
-    "name": "HW2P-Project",
-    "slug": "HW2P-Project",
+    "name": "HW2P",
+    "slug": "HW2P",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
+    "privacy":"public",
+    "githubUrl":"git@github.com:SitaraAlayev/HW2P-Final_Project.git",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -22,7 +24,7 @@
     
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/app_logo.png",
         "backgroundColor": "#FFFFFF"
       }
     },
@@ -33,7 +35,9 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "The app accesses your photos to let you share them with your friends."
+          "photosPermission": "Allow HW2P to access your photos.",
+          "cameraPermission": "Allow HW2P to access your camera."
+
         }
       ]
     ]
