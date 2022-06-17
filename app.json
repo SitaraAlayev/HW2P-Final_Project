@@ -6,7 +6,7 @@
     "orientation": "default",
     "icon": "./assets/icon.png",
     "privacy":"public",
-    "githubUrl":"git@github.com:SitaraAlayev/HW2P-Final_Project.git",
+    "githubUrl":"https://github.com/SitaraAlayev/HW2P-Final_Project.git",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -36,10 +36,12 @@
         "expo-image-picker",
         {
           "photosPermission": "Allow HW2P to access your photos.",
-          "cameraPermission": "Allow HW2P to access your camera."
+          "cameraPermission": "Allow HW2P to access your camera.",
+          "isAccessMediaLocationEnabled": true
 
         }
       ]
+      
     ]
 
   }

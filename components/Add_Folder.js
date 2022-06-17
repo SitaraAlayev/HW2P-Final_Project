@@ -4,23 +4,36 @@ import Styles from '../Styles';
 import Card from '../components/Card';
 import Main_button from './Main_button';
 import Input from './Input';
-import View_folders from '../screens/View_folders';
+import * as FileSystem from 'expo-file-system';
 
 
-export const Add_Folder = (props)=>{
+
+export const Add_Folder = (props,navigation)=>{
 
 
-    const [folderName,setFolderName]=useState("");
+    const [folderName,setFolderName]=useState([]);
+    const [folderItems, setFolderItems]=useState([]);
+
+    const handleAddFolder =()=>
+    {
+        setFolderItems([...folderItems,folderName])
+        
+    }
 
 
     function changeNameFolderHanler(enteredName){
         setFolderName(enteredName);
     }
 
-    function saveFolder()
+    function saveFolder(folderName)
     {
-        if (nameFolderHanler == true)
-            FileSystem.documentDirectory 
+        if (nameFolderHanler === true)
+        {
+
+            const newFolderUri=FileSystem.documentDirectory()
+            const newfolder= new Folder(folderName,newFolderUri);
+            console.log(newfolder);
+        }
 
     }
 
@@ -34,8 +47,8 @@ export const Add_Folder = (props)=>{
             value={folderName}
             placeholder="הכנס שם תיקייה" />
             <View style={Styles.buttonText}>
-                <Main_button onPress={saveFolder}>שמירה</Main_button>
-                <Main_button onPress={{}}>ביטול</Main_button>
+                <Main_button onPress={FileSystem.makeDirectoryAsync()}>שמירה</Main_button>
+                <Main_button onPress={() => props.navigation.goBack()}>ביטול</Main_button>
             </View>
         </Card>
     </View>
@@ -48,4 +61,4 @@ Add_Folder.navigationOptions={
     headerTitle:'הוספת תיקייה חדשה'
   };
 
-export default Add_Folder
+export default Add_Folder;

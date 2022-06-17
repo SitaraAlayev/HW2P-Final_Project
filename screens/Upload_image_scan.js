@@ -11,8 +11,6 @@ const Upload_image_scan =(props) =>{
 
      const [pickedImage , setPickedImage] =useState();
 
-     const [save,setSave]=useState(false);
-
      const [image, setImage] = useState(null);
 
      const pickImage = async () => {
@@ -20,19 +18,22 @@ const Upload_image_scan =(props) =>{
          {
          mediaTypes: ImagePicker.MediaTypeOptions.Images,
          allowsEditing: true,
-         aspect: [4, 3],
+         aspect: [3, 4],
          quality: 1,
+
        });
-   
+
+
        if (!result.cancelled) {
+        MediaLibrary.createAssetAsync(result);
+        console.log(pickedImage);
          setImage(result.uri);
        }
+
 
      };
 
       
-
-
      const verifyPermissions = async () => {
        const result = await Permissions.askAsync(Permissions.CAMERA);
        if (result.status !== 'granted') {
@@ -51,13 +52,11 @@ const Upload_image_scan =(props) =>{
        if (!hasPermission) {
            return;
        }
-        image = await ImagePicker.launchCameraAsync({
+        let image = await ImagePicker.launchCameraAsync({
         allowsEditing: true,
         aspect: [16, 9],
         quality: 0.5,
-        allowsMultipleSelection:true,
-        onPictureSaved: this.saveImage.bind(this),
-        
+        allowsMultipleSelection:true,        
    
        });
        console.log(image.uri);
@@ -65,14 +64,15 @@ const Upload_image_scan =(props) =>{
        setPickedImage(image.uri);
      };
 
+     let imagePreview=<Text>No image taken yet</Text>;
+     if(pickedImage)
+     {
+      imagePreview=<Image source={{uri:pickedImage}}/>
+     }
 
-
-
-     
      return(
-          <View style={Styles.container}>
-            <ScrollView>
-            
+          <View style={Styles.container}> 
+               {imagePreview}          
             <View style={Styles.SelectIcon_buttons}>
                 <Main_button onPress={takeImageHandler}>
                       <FontAwesome name="camera" size={30} color="#AD67EA" />
@@ -81,7 +81,6 @@ const Upload_image_scan =(props) =>{
                       <Entypo name="images" size={30} color="#AD67EA"/>
                 </Main_button>
               </View>
-            </ScrollView>
         </View>
      );
 };

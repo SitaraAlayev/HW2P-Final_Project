@@ -9,7 +9,6 @@ export const View_folders = (props)=>{
         <ScrollView>
             <View style={Styles.container}>
                 <Text>מסך צפייה בתיקיות </Text>
-                
             </View>
         </ScrollView>
             
