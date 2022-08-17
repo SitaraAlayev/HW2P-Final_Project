@@ -4,7 +4,5 @@ export class Folder{
         this.id=new Date().toString()+Math.random().toString();
         this.folderUri=folderUri;
 
-
-
     }
 }

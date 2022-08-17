@@ -2,6 +2,7 @@ import {FlatList,View,Text,StyleSheet} from 'react-native';
 import FolderItem from '../components/FolderItem';
 
 function Folder_List({folders}){
+    
     if(!folders || folders.lenght===0){
         return (
         <View style={styles.fallbackContainer}>
@@ -9,6 +10,7 @@ function Folder_List({folders}){
                 No folders added yet !
             </Text>
         </View>
+        
         );
     }
     

@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { View, Text,Platform,ScrollView, FlatList } from 'react-native';
+import { View, Text,Platform,ScrollView } from 'react-native';
 import Styles from '../Styles'
 import { HeaderButtons,Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/CustomHeaderButton';
@@ -8,7 +8,6 @@ export const View_folders = (props)=>{
     return(
         <ScrollView>
             <View style={Styles.container}>
-                <Text>מסך צפייה בתיקיות </Text>
             </View>
         </ScrollView>
             
