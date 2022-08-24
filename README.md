@@ -20,5 +20,4 @@
 
 ### Run
 ### python modalserver.py
-### paste Running on ip address (eg: http://192.168.1.101:4444) in constants.js
 ### expo start
